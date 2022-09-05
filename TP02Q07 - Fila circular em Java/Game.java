@@ -44,9 +44,11 @@ class GameQueue {
 
     public void print() { 
         
-        for(int i = first; i != last; i = ((i + 1) % array.length)) {
+        int c = 0;
+
+        for(int i = first; i != last; i = ((i + 1) % array.length), c++) {
             
-            System.out.print("[" + ((last - first) == 1 ? "0" : i) + "] ");
+            System.out.print("[" + ((last - first) == 1 ? "0" : c) + "] ");
             
             array[i].print();
         }
@@ -602,7 +604,9 @@ class Game {
     public static void main(String[] args) throws Exception {
 
         Scanner scr = new Scanner(System.in);
-        GameQueue games = new GameQueue(10000);
+        GameQueue games = new GameQueue(5);
+        float total_avgPt = 0, c = 0;
+
        
         // ------------------------------------------------------------------------------ //
 
@@ -624,7 +628,20 @@ class Game {
                 Game game = new Game();
 
                 game.read(line);
-                games.insert(game);
+
+                try { games.insert(game); }
+                catch(java.lang.Exception e) {
+
+                    total_avgPt -= games.remove().getAvgPlaytime();
+                    c--;
+                    
+                    games.insert(game);
+                }
+
+                // Print playtime avg
+                total_avgPt += game.getAvgPlaytime();
+
+                System.out.println(Math.round(total_avgPt / ++c));
             }
 
             // Close CSV file
@@ -654,9 +671,30 @@ class Game {
                 Game game = new Game();
 
                 game.read(data);
-                games.insert(game);
+                
+                try { games.insert(game); }
+                catch(java.lang.Exception e) {
+
+                    total_avgPt -= games.remove().getAvgPlaytime();
+                    c--;
+                    
+                    games.insert(game);
+                }
+
+                // Print playtime avg
+                total_avgPt += game.getAvgPlaytime();
+
+                System.out.println(Math.round(total_avgPt / ++c));
             }
-            else if(op.equals("R")) System.out.println("(R) " + games.remove().getName());
+            else if(op.equals("R")) {
+                
+                Game resp = games.remove();
+
+                total_avgPt -= resp.getAvgPlaytime();
+                c--;
+
+                System.out.println("(R) " + resp.getName());
+            }
         }
 
         games.print();
