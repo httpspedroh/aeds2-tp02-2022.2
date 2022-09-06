@@ -24,10 +24,10 @@ class Game {
 
     public Game() {
 
-        this.name = this.owners = this.website = this.developers = "";
+        this.name = this.owners = this.website = this.developers = null;
         this.languages = new ArrayList<String>();
         this.genres = new ArrayList<String>();
-        this.release_date = new Date();
+        this.release_date = null;
         this.app_id = this.age = this.dlcs = this.avg_playtime = -1;
         this.price = this.upvotes = -1;
         this.windows = this.mac = this.linux = false;
@@ -160,12 +160,7 @@ class Game {
                 }
             }
         }
-        else {
-
-            this.name = null;
-
-            atr_index = ++index;
-        }
+        else atr_index = ++index;
 
         // ---------------------------------- //
         
@@ -205,12 +200,7 @@ class Game {
                 }
             }
         }
-        else {
-
-            this.release_date = null;
-
-            atr_index = ++index;
-        }
+        else atr_index = ++index;
 
         // ---------------------------------- //
         
@@ -335,12 +325,7 @@ class Game {
                 }
             }
         }
-        else {
-
-            this.website = null;
-
-            atr_index = ++index;
-        }
+        else atr_index = ++index;
 
         // ---------------------------------- //
         
@@ -460,12 +445,7 @@ class Game {
                 }
             }
         }
-        else {
-
-            this.developers = null;
-
-            atr_index = ++index;
-        }
+        else atr_index = ++index;
        
         // ---------------------------------- //
         
