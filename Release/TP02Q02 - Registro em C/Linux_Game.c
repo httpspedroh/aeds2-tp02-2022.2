@@ -596,7 +596,6 @@ void game_read(Game *game, char *line) {
     // ------------------------------------------------------------ //
     
     // Find "Genres"
-    // Find "Genres"
     if(index < strlen(line) - 1) {
 
         if(line[index] == ',') atr_index = ++index;                    
@@ -619,8 +618,9 @@ void game_read(Game *game, char *line) {
                 else if(line[index] == '\"') {
 
                     substring(sub, &line[atr_index], strlen(line) - 1 - atr_index);
-            
-                    if(sub[strlen(sub) - 2] == '\"') sub[strlen(sub) - 2] = '\0';
+
+                    if(sub[strlen(sub) - 1] == '\"') sub[strlen(sub) - 1] = '\0';
+                    else if(sub[strlen(sub) - 2] == '\"') sub[strlen(sub) - 2] = '\0';
 
                     strcpy(game -> genres[game -> count_genres++], sub);
                     break;
@@ -629,9 +629,7 @@ void game_read(Game *game, char *line) {
         }
         else {
 
-            substring(sub, &line[atr_index], strlen(line) - 1 - atr_index);
-            
-            sub[strlen(line) - 2 - atr_index] = '\0';
+            substring(sub, &line[atr_index], strlen(line) - 2 - atr_index);
 
             strcpy(game -> genres[game -> count_genres++], sub);   
         }

@@ -618,8 +618,9 @@ void game_read(Game *game, char *line) {
                 else if(line[index] == '\"') {
 
                     substring(sub, &line[atr_index], strlen(line) - 1 - atr_index);
-            
+
                     if(sub[strlen(sub) - 1] == '\"') sub[strlen(sub) - 1] = '\0';
+                    else if(sub[strlen(sub) - 2] == '\"') sub[strlen(sub) - 2] = '\0';
 
                     strcpy(game -> genres[game -> count_genres++], sub);
                     break;
