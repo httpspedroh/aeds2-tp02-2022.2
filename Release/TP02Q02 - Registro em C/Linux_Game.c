@@ -48,7 +48,7 @@ int n = 0;
 // -------------------------------------------------------------------------------- //
 
 // Functions
-bool isFim(char* line) { return !strcmp(line, "FIM"); }
+bool isFim(char* line) { return line[0] == 'F' && line[1] == 'I' && line[2] == 'M'; }
 
 void substring(char *string, char *string_start, int length) {
 
@@ -596,6 +596,7 @@ void game_read(Game *game, char *line) {
     // ------------------------------------------------------------ //
     
     // Find "Genres"
+    // Find "Genres"
     if(index < strlen(line) - 1) {
 
         if(line[index] == ',') atr_index = ++index;                    
@@ -619,7 +620,7 @@ void game_read(Game *game, char *line) {
 
                     substring(sub, &line[atr_index], strlen(line) - 1 - atr_index);
             
-                    if(sub[strlen(sub) - 1] == '\"') sub[strlen(sub) - 1] = '\0';
+                    if(sub[strlen(sub) - 2] == '\"') sub[strlen(sub) - 2] = '\0';
 
                     strcpy(game -> genres[game -> count_genres++], sub);
                     break;
@@ -629,6 +630,8 @@ void game_read(Game *game, char *line) {
         else {
 
             substring(sub, &line[atr_index], strlen(line) - 1 - atr_index);
+            
+            sub[strlen(line) - 2 - atr_index] = '\0';
 
             strcpy(game -> genres[game -> count_genres++], sub);   
         }
