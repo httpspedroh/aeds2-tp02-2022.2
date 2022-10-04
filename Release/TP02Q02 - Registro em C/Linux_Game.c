@@ -662,7 +662,7 @@ int main() {
     FILE *fp;
     char *line = NULL;
     size_t len = 0;
-    size_t read;
+    ssize_t read;
 
     fp = fopen("/tmp/games.csv", "r");
 
