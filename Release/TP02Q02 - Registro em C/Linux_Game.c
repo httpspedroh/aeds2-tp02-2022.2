@@ -630,7 +630,7 @@ void game_read(Game *game, char *line) {
         else {
 
             substring(sub, &line[atr_index], strlen(line) - 2 - atr_index);
-
+    
             strcpy(game -> genres[game -> count_genres++], sub);   
         }
     }
