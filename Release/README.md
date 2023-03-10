@@ -6,5 +6,5 @@ Directory with individually developed questions, adapting them for better auto-c
 
     * `TP02Q0x`: Folder with the algorithm developed, in and out predicted files for question x.
 
-    * **tp02_questions_list**: List of questions prepared and released to students.
+    * **tp02_questions_list.pdf**: List of questions prepared and released to students.
  
